@@ -40,7 +40,7 @@ Widget appSearch() {
         Expanded(
           child: Container(
             padding: const EdgeInsets.symmetric(
-              horizontal: 10,
+              horizontal: 20,
             ),
             child: const TextField(
               decoration: InputDecoration(
@@ -59,26 +59,26 @@ Widget appInfoBody() {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        const SizedBox(
+          height: 20,
+        ),
         primaryShelf(
           'India',
           'Republic of India',
           'IN',
           'New Delhi',
-          'Asia',
           'https://flagcdn.com/w320/in.png',
           'https://mainfacts.com/media/images/coats_of_arms/in.png',
         ),
+        const SizedBox(
+          height: 20,
+        ),
         secondaryShelf(
-          [
-            'English',
-            'Tamil',
-            'Hindi',
-            'Sanskrit',
-            'English',
-            'Tamil',
-            'Hindi',
-            'Sanskrit'
-          ],
+          'New Delhi',
+          'Asia',
+          'Indian Rupee',
+          '₹',
+          '1380004385',
         ),
       ],
     ),

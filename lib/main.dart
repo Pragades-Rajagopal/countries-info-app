@@ -1,4 +1,4 @@
-import 'package:countries_info_app/homepage.dart';
+import 'package:countries_info_app/screens/homepage.dart';
 import 'package:flutter/material.dart';
 
 void main() {

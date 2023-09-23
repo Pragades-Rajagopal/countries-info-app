@@ -12,69 +12,77 @@ Widget primaryShelf(
   String officialName,
   String countryCode,
   String capital,
-  String region,
   String flagUrl,
   String coatOfArms,
 ) {
-  return Center(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        divXL,
-        Center(
-          child: SizedBox(
-            width: 120,
-            height: 120,
-            child: getImages(flagUrl),
-          ),
+  return InkWell(
+    child: AnimatedContainer(
+      margin: const EdgeInsets.symmetric(
+        horizontal: 20,
+      ),
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeIn,
+      padding: const EdgeInsets.symmetric(
+        vertical: 20,
+        horizontal: 10,
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        color: Colors.blue.withOpacity(0.9),
+        border: Border.all(
+          color: Colors.blue,
+          style: BorderStyle.solid,
+          width: 0.5,
         ),
-        Center(
-          child: Text(
-            "$commonName, $countryCode",
-            style: const TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ),
-        div,
-        Center(
-          child: Text(
-            officialName,
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ),
-        div,
-        Center(
-          child: Text(
-            region,
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ),
-        divXL,
-        Center(
-          child: Container(
-            width: 120,
-            height: 120,
-            color: Colors.white,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // divXL,
+          Center(
             child: SizedBox(
+              width: 120,
               height: 100,
-              width: 100,
-              child: getImages(coatOfArms),
+              child: getImages(flagUrl),
             ),
           ),
-        ),
-      ],
+          Center(
+            child: Text(
+              "$commonName, $countryCode",
+              style: const TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          div,
+          Center(
+            child: Text(
+              officialName,
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          divXL,
+          Center(
+            child: Container(
+              width: 120,
+              height: 120,
+              color: Colors.white,
+              child: SizedBox(
+                height: 100,
+                width: 100,
+                child: getImages(coatOfArms),
+              ),
+            ),
+          ),
+        ],
+      ),
     ),
   );
 }
