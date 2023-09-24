@@ -11,7 +11,6 @@ Widget primaryShelf(
   String commonName,
   String officialName,
   String countryCode,
-  String capital,
   String flagUrl,
   String coatOfArms,
 ) {
