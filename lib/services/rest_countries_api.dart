@@ -11,6 +11,7 @@ class CountriesInfoApi {
       CountriesInfoModel info = CountriesInfoModel.fromJSON(body[0]);
       return info;
     } catch (e) {
+      print("e ------ $e");
       return CountriesInfoModel.voidData();
     }
   }

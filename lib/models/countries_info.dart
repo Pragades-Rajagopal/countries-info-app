@@ -9,6 +9,8 @@ class CountriesInfoModel {
   String? currency;
   String? currencySymbol;
   int? population;
+  double? area;
+  List<String>? languages;
 
   CountriesInfoModel({
     this.commonName,
@@ -21,6 +23,8 @@ class CountriesInfoModel {
     this.currency,
     this.currencySymbol,
     this.population,
+    this.area,
+    this.languages,
   });
 
   CountriesInfoModel.fromJSON(Map<String, dynamic> json) {
@@ -34,6 +38,8 @@ class CountriesInfoModel {
     currency = getCurrency(json["currencies"], 'name');
     currencySymbol = getCurrency(json["currencies"], 'symbol');
     population = json["population"];
+    area = json["area"];
+    languages = getLanguage(json["languages"]);
   }
 
   CountriesInfoModel.voidData() {
@@ -54,5 +60,13 @@ class CountriesInfoModel {
       values.add(value[opts]);
     });
     return values[0];
+  }
+
+  List<String> getLanguage(Map<String, dynamic> data) {
+    List<String> languages = [];
+    data.forEach((key, value) {
+      languages.add(value);
+    });
+    return languages;
   }
 }

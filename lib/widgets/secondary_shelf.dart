@@ -18,6 +18,7 @@ Widget secondaryShelf(
   String currency,
   String currencySymbol,
   String population,
+  String area,
 ) {
   return SingleChildScrollView(
     scrollDirection: Axis.horizontal,
@@ -163,6 +164,43 @@ Widget secondaryShelf(
                   children: [
                     Text(
                       population,
+                      style: containerInfoStyle,
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+        InkWell(
+          child: AnimatedContainer(
+            margin: containerMargin,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeIn,
+            padding: const EdgeInsets.symmetric(
+              vertical: 20,
+              horizontal: 10,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              color: containerColor,
+              border: containerBorderStyle,
+            ),
+            child: Column(
+              children: [
+                const Row(
+                  children: [
+                    Text(
+                      "Area",
+                      style: containerTitleStyle,
+                    )
+                  ],
+                ),
+                divXL,
+                Row(
+                  children: [
+                    Text(
+                      "$area sq.km",
                       style: containerInfoStyle,
                     )
                   ],

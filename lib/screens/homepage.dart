@@ -1,5 +1,6 @@
 import 'package:countries_info_app/models/countries_info.dart';
 import 'package:countries_info_app/services/rest_countries_api.dart';
+import 'package:countries_info_app/widgets/extras_shelf.dart';
 import 'package:countries_info_app/widgets/primary_shelf.dart';
 import 'package:countries_info_app/widgets/secondary_shelf.dart';
 import 'package:flutter/material.dart';
@@ -26,13 +27,18 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       appBar: countryAppBar(),
       backgroundColor: Colors.black,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            appSearch(),
-            infoFutureBuilder(searchCountry),
-          ],
-        ),
+      body: Column(
+        children: [
+          appSearch(),
+          Expanded(
+              child: SingleChildScrollView(
+            child: Column(
+              children: [
+                infoFutureBuilder(searchCountry),
+              ],
+            ),
+          )),
+        ],
       ),
     );
   }
@@ -118,8 +124,11 @@ class _HomepageState extends State<Homepage> {
             if (data?.commonName == '') {
               return const Center(
                 child: Text(
-                  'Something went wrong 123',
-                  style: TextStyle(color: Colors.white),
+                  'Country info does not exists! \n Please search for another country',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
               );
             }
@@ -171,6 +180,13 @@ class _HomepageState extends State<Homepage> {
             "${data!.currency}",
             "${data!.currencySymbol}",
             "${data!.population}",
+            "${data!.area}",
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          extraShelf(
+            data.languages,
           ),
         ],
       ),
