@@ -1,3 +1,5 @@
+import 'package:countries_info_app/services/rest_countries_api.dart';
+
 class CountriesInfoModel {
   String? commonName;
   String? officialName;
@@ -11,6 +13,7 @@ class CountriesInfoModel {
   int? population;
   double? area;
   List<String>? languages;
+  List<dynamic>? borders;
 
   CountriesInfoModel({
     this.commonName,
@@ -25,6 +28,7 @@ class CountriesInfoModel {
     this.population,
     this.area,
     this.languages,
+    this.borders,
   });
 
   CountriesInfoModel.fromJSON(Map<String, dynamic> json) {
@@ -40,6 +44,7 @@ class CountriesInfoModel {
     population = json["population"];
     area = json["area"];
     languages = getLanguage(json["languages"]);
+    borders = json["borders"] as List?;
   }
 
   CountriesInfoModel.voidData() {
@@ -68,5 +73,11 @@ class CountriesInfoModel {
       languages.add(value);
     });
     return languages;
+  }
+
+  CountriesInfoApi client = CountriesInfoApi();
+  Future<List> getBorderCountriesName(List cc) async {
+    var names = await client.getCountryNamesApi(cc);
+    return names;
   }
 }

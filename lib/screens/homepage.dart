@@ -14,7 +14,7 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   final textController = TextEditingController();
-  var searchCountry = 'australia';
+  var searchCountry = 'india';
   CountriesInfoApi client = CountriesInfoApi();
   CountriesInfoModel? data;
 
@@ -145,6 +145,7 @@ class _HomepageState extends State<Homepage> {
             ),
           );
         } catch (e) {
+          // print("e ------ $e");
           return const Center(
             child: Text(
               'Something went wrong',
@@ -187,6 +188,7 @@ class _HomepageState extends State<Homepage> {
           ),
           extraShelf(
             data.languages,
+            data.borders,
           ),
         ],
       ),
