@@ -44,7 +44,7 @@ class CountriesInfoModel {
     population = json["population"];
     area = json["area"];
     languages = getLanguage(json["languages"]);
-    borders = json["borders"] as List?;
+    borders = json["borders"];
   }
 
   CountriesInfoModel.voidData() {
@@ -73,11 +73,5 @@ class CountriesInfoModel {
       languages.add(value);
     });
     return languages;
-  }
-
-  CountriesInfoApi client = CountriesInfoApi();
-  Future<List> getBorderCountriesName(List cc) async {
-    var names = await client.getCountryNamesApi(cc);
-    return names;
   }
 }

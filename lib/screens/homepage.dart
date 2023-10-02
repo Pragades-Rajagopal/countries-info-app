@@ -16,10 +16,16 @@ class _HomepageState extends State<Homepage> {
   final textController = TextEditingController();
   var searchCountry = 'india';
   CountriesInfoApi client = CountriesInfoApi();
+  CountriesInfoModel getModelFunctions = CountriesInfoModel();
   CountriesInfoModel? data;
+  List borders = [];
 
   Future<void> getCountryData(String country) async {
     data = await client.getCountriesInfo(country);
+  }
+
+  Future<void> getBorderCountries(List codes) async {
+    borders = await client.getCountryNamesApi(codes);
   }
 
   @override
@@ -31,13 +37,14 @@ class _HomepageState extends State<Homepage> {
         children: [
           appSearch(),
           Expanded(
-              child: SingleChildScrollView(
-            child: Column(
-              children: [
-                infoFutureBuilder(searchCountry),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  infoFutureBuilder(searchCountry),
+                ],
+              ),
             ),
-          )),
+          ),
         ],
       ),
     );
@@ -145,7 +152,6 @@ class _HomepageState extends State<Homepage> {
             ),
           );
         } catch (e) {
-          // print("e ------ $e");
           return const Center(
             child: Text(
               'Something went wrong',
@@ -158,6 +164,7 @@ class _HomepageState extends State<Homepage> {
   }
 
   Widget appInfoBody(data) {
+    getBorderCountries(data.borders);
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -188,7 +195,7 @@ class _HomepageState extends State<Homepage> {
           ),
           extraShelf(
             data.languages,
-            data.borders,
+            borders,
           ),
         ],
       ),

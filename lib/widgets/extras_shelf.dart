@@ -14,7 +14,7 @@ Border containerBorderStyle = Border.all(
 
 Widget extraShelf(
   List<String>? languages,
-  List<dynamic>? borders,
+  List<dynamic> borders,
 ) {
   return SingleChildScrollView(
     child: Column(
@@ -62,46 +62,48 @@ Widget extraShelf(
           ),
         ),
         divXL,
-        InkWell(
-          child: AnimatedContainer(
-            margin: const EdgeInsets.symmetric(
-              horizontal: 20,
-            ),
-            duration: const Duration(milliseconds: 500),
-            curve: Curves.easeIn,
-            padding: const EdgeInsets.symmetric(
-              vertical: 20,
-              horizontal: 10,
-            ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              color: containerColor,
-              border: containerBorderStyle,
-            ),
-            child: Column(
-              children: [
-                const Row(
-                  children: [
-                    Text(
-                      "Borders",
-                      style: containerTitleStyle,
-                    ),
-                  ],
-                ),
-                divXL,
-                ListView(
-                  shrinkWrap: true,
-                  children: borders!.map((border) {
-                    return Text(
-                      border,
-                      style: containerInfoStyle,
-                    );
-                  }).toList(),
-                ),
-              ],
+        if (borders.isNotEmpty) ...[
+          InkWell(
+            child: AnimatedContainer(
+              margin: const EdgeInsets.symmetric(
+                horizontal: 20,
+              ),
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeIn,
+              padding: const EdgeInsets.symmetric(
+                vertical: 20,
+                horizontal: 10,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                color: containerColor,
+                border: containerBorderStyle,
+              ),
+              child: Column(
+                children: [
+                  const Row(
+                    children: [
+                      Text(
+                        "Borders",
+                        style: containerTitleStyle,
+                      ),
+                    ],
+                  ),
+                  divXL,
+                  ListView(
+                    shrinkWrap: true,
+                    children: borders.map((border) {
+                      return Text(
+                        border,
+                        style: containerInfoStyle,
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
+        ],
       ],
     ),
   );
