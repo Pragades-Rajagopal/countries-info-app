@@ -1,5 +1,3 @@
-import 'package:countries_info_app/services/rest_countries_api.dart';
-
 class CountriesInfoModel {
   String? commonName;
   String? officialName;

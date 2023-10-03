@@ -22,10 +22,14 @@ class _HomepageState extends State<Homepage> {
 
   Future<void> getCountryData(String country) async {
     data = await client.getCountriesInfo(country);
+    await getBorderCountries(data!.borders);
   }
 
-  Future<void> getBorderCountries(List codes) async {
-    borders = await client.getCountryNamesApi(codes);
+  Future<void> getBorderCountries(List? codes) async {
+    if (codes == null) {
+      borders = [];
+    }
+    borders = await client.getCountryNamesApi(codes!);
   }
 
   @override
@@ -164,7 +168,7 @@ class _HomepageState extends State<Homepage> {
   }
 
   Widget appInfoBody(data) {
-    getBorderCountries(data.borders);
+    // getBorderCountries(data.borders);
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
