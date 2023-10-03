@@ -12,6 +12,10 @@ class CountriesInfoModel {
   double? area;
   List<String>? languages;
   List<dynamic>? borders;
+  String? timezones;
+  String? tld;
+  double? latitude;
+  double? longitude;
 
   CountriesInfoModel({
     this.commonName,
@@ -27,6 +31,10 @@ class CountriesInfoModel {
     this.area,
     this.languages,
     this.borders,
+    this.timezones,
+    this.tld,
+    this.latitude,
+    this.longitude,
   });
 
   CountriesInfoModel.fromJSON(Map<String, dynamic> json) {
@@ -43,6 +51,10 @@ class CountriesInfoModel {
     area = json["area"];
     languages = getLanguage(json["languages"]);
     borders = json["borders"];
+    timezones = json["timezones"][0];
+    tld = json["tld"][0];
+    latitude = json["latlng"][0];
+    longitude = json["latlng"][1];
   }
 
   CountriesInfoModel.voidData() {

@@ -200,6 +200,10 @@ class _HomepageState extends State<Homepage> {
           extraShelf(
             data.languages,
             borders,
+            "${data!.timezones}",
+            "${data!.tld}",
+            "${data!.latitude}",
+            "${data!.longitude}",
           ),
         ],
       ),

@@ -2,20 +2,24 @@ import 'package:flutter/material.dart';
 
 SizedBox div = const SizedBox(height: 4);
 SizedBox divXL = const SizedBox(height: 16);
-// const containerMargin = EdgeInsets.only(left: 20);
+const containerMargin = EdgeInsets.symmetric(horizontal: 20);
 const containerTitleStyle = TextStyle(fontSize: 20);
 const containerInfoStyle = TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
-final containerColor = Colors.yellow.withOpacity(0.9);
-final containerColor2 = Colors.orange.withOpacity(0.9);
-Border containerBorderStyle = Border.all(
-  color: Colors.yellow,
-  style: BorderStyle.solid,
-  width: 0.5,
-);
+Border containerBorder(color) {
+  return Border.all(
+    color: color,
+    style: BorderStyle.solid,
+    width: 0.5,
+  );
+}
 
 Widget extraShelf(
   List<String>? languages,
   List<dynamic> borders,
+  String? timezones,
+  String? tld,
+  String? lat,
+  String? lng,
 ) {
   return SingleChildScrollView(
     child: Column(
@@ -35,8 +39,8 @@ Widget extraShelf(
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
-              color: containerColor,
-              border: containerBorderStyle,
+              color: Colors.yellow.withOpacity(0.9),
+              border: containerBorder(Colors.yellow),
             ),
             child: Column(
               children: [
@@ -78,8 +82,8 @@ Widget extraShelf(
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
-                color: containerColor2,
-                border: containerBorderStyle,
+                color: Colors.orange.withOpacity(0.9),
+                border: containerBorder(Colors.orange),
               ),
               child: Column(
                 children: [
@@ -107,6 +111,172 @@ Widget extraShelf(
             ),
           ),
         ],
+        divXL,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: 165,
+              height: 110,
+              margin: const EdgeInsets.only(
+                left: 20,
+                right: 10,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                color: Colors.pink.withOpacity(0.9),
+                border: containerBorder(Colors.pink),
+              ),
+              padding: const EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 10,
+              ),
+              child: Column(
+                children: [
+                  const Row(
+                    children: [
+                      Text(
+                        "Timezone",
+                        style: containerTitleStyle,
+                      )
+                    ],
+                  ),
+                  divXL,
+                  Row(
+                    children: [
+                      Text(
+                        '$timezones',
+                        style: containerInfoStyle,
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              width: 165,
+              height: 110,
+              margin: const EdgeInsets.only(
+                right: 20,
+                left: 10,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                color: Colors.lightBlue.withOpacity(0.9),
+                border: containerBorder(Colors.lightBlue),
+              ),
+              padding: const EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 10,
+              ),
+              child: Column(
+                children: [
+                  const Row(
+                    children: [
+                      Text(
+                        "TLD",
+                        style: containerTitleStyle,
+                      )
+                    ],
+                  ),
+                  divXL,
+                  Row(
+                    children: [
+                      Text(
+                        "$tld",
+                        style: containerInfoStyle,
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        divXL,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: 165,
+              height: 110,
+              margin: const EdgeInsets.only(
+                left: 20,
+                right: 10,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                color: Colors.amber[200],
+                border: containerBorder(Colors.amber),
+              ),
+              padding: const EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 10,
+              ),
+              child: Column(
+                children: [
+                  const Row(
+                    children: [
+                      Text(
+                        "Latitude",
+                        style: containerTitleStyle,
+                      )
+                    ],
+                  ),
+                  divXL,
+                  Row(
+                    children: [
+                      Text(
+                        '$lat',
+                        style: containerInfoStyle,
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              width: 165,
+              height: 110,
+              margin: const EdgeInsets.only(
+                right: 20,
+                left: 10,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                color: Colors.lime,
+                border: containerBorder(Colors.lime),
+              ),
+              padding: const EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 10,
+              ),
+              child: Column(
+                children: [
+                  const Row(
+                    children: [
+                      Text(
+                        "Longitude",
+                        style: containerTitleStyle,
+                      )
+                    ],
+                  ),
+                  divXL,
+                  Row(
+                    children: [
+                      Text(
+                        "$lng",
+                        style: containerInfoStyle,
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ],
     ),
   );
