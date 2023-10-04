@@ -68,18 +68,20 @@ Widget primaryShelf(
             ),
           ),
           divXL,
-          Center(
-            child: Container(
-              width: 120,
-              height: 120,
-              color: Colors.white,
-              child: SizedBox(
-                height: 100,
-                width: 100,
-                child: getImages(coatOfArms),
+          if (coatOfArms != "null") ...[
+            Center(
+              child: Container(
+                width: 120,
+                height: 120,
+                color: Colors.white,
+                child: SizedBox(
+                  height: 100,
+                  width: 100,
+                  child: getImages(coatOfArms),
+                ),
               ),
             ),
-          ),
+          ],
         ],
       ),
     ),
