@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:intl/intl.dart';
 
 SizedBox div = const SizedBox(height: 4);
 SizedBox divXL = const SizedBox(height: 16);
@@ -126,7 +127,7 @@ Widget secondaryShelf(
                 Row(
                   children: [
                     Text(
-                      "$currency ($currencySymbol)",
+                      currency,
                       style: containerInfoStyle,
                     ),
                   ],
