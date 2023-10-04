@@ -16,6 +16,7 @@ class CountriesInfoModel {
   String? tld;
   double? latitude;
   double? longitude;
+  String? maps;
 
   CountriesInfoModel({
     this.commonName,
@@ -35,6 +36,7 @@ class CountriesInfoModel {
     this.tld,
     this.latitude,
     this.longitude,
+    this.maps,
   });
 
   CountriesInfoModel.fromJSON(Map<String, dynamic> json) {
@@ -55,6 +57,7 @@ class CountriesInfoModel {
     tld = json["tld"][0];
     latitude = json["latlng"][0];
     longitude = json["latlng"][1];
+    maps = json["maps"]["googleMaps"];
   }
 
   CountriesInfoModel.voidData() {

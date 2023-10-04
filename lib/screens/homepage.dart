@@ -204,6 +204,23 @@ class _HomepageState extends State<Homepage> {
             "${data!.tld}",
             "${data!.latitude}",
             "${data!.longitude}",
+            "${data!.maps}",
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const Center(
+            child: SizedBox(
+              width: 220,
+              height: 25,
+              child: Text(
+                "Powered by REST Countries",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+            ),
           ),
         ],
       ),

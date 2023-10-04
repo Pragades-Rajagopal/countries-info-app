@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 SizedBox div = const SizedBox(height: 4);
 SizedBox divXL = const SizedBox(height: 16);
@@ -20,6 +21,7 @@ Widget extraShelf(
   String? tld,
   String? lat,
   String? lng,
+  String? maps,
 ) {
   return SingleChildScrollView(
     child: Column(
@@ -270,6 +272,56 @@ Widget extraShelf(
                         "$lng",
                         style: containerInfoStyle,
                       )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        divXL,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: 165,
+              height: 110,
+              margin: const EdgeInsets.only(
+                left: 20,
+                right: 10,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                color: Colors.brown[200],
+                border: containerBorder(Colors.brown),
+              ),
+              padding: const EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 10,
+              ),
+              child: Column(
+                children: [
+                  const Row(
+                    children: [
+                      Text(
+                        "Maps",
+                        style: containerTitleStyle,
+                      )
+                    ],
+                  ),
+                  divXL,
+                  Row(
+                    children: [
+                      InkWell(
+                        onTap: () => launchUrl(
+                          Uri.parse("$maps"),
+                        ),
+                        child: const Icon(
+                          Icons.map_outlined,
+                          color: Color.fromRGBO(30, 136, 229, 1),
+                        ),
+                      ),
                     ],
                   ),
                 ],
