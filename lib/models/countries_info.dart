@@ -14,8 +14,8 @@ class CountriesInfoModel {
   List<dynamic>? borders;
   String? timezones;
   String? tld;
-  double? latitude;
-  double? longitude;
+  String? latitude;
+  String? longitude;
   String? maps;
 
   CountriesInfoModel({
@@ -55,8 +55,8 @@ class CountriesInfoModel {
     borders = json["borders"];
     timezones = json["timezones"][0];
     tld = json["tld"][0];
-    latitude = json["latlng"][0];
-    longitude = json["latlng"][1];
+    latitude = latlonPrecision(json["latlng"][0]);
+    longitude = latlonPrecision(json["latlng"][1]);
     maps = json["maps"]["googleMaps"];
   }
 
@@ -86,5 +86,9 @@ class CountriesInfoModel {
       languages.add(value);
     });
     return languages;
+  }
+
+  String latlonPrecision(double value) {
+    return value.toStringAsPrecision(6);
   }
 }

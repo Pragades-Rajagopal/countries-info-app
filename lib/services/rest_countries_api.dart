@@ -30,4 +30,20 @@ class CountriesInfoApi {
       return [];
     }
   }
+
+  Future<List<String>> getAllCountries() async {
+    try {
+      List<String> countries = [];
+      var url = Uri.parse('https://restcountries.com/v3.1/all');
+      var response = await http.get(url);
+      var body = jsonDecode(response.body);
+      for (var i = 0; i < body.length; i++) {
+        countries.add(body[i]["name"]["common"]);
+      }
+      return countries;
+    } catch (e) {
+      print(e);
+      return [''];
+    }
+  }
 }

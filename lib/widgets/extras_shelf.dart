@@ -22,6 +22,7 @@ Widget extraShelf(
   String? lat,
   String? lng,
   String? maps,
+  String? commonName,
 ) {
   return SingleChildScrollView(
     child: Column(
@@ -281,7 +282,7 @@ Widget extraShelf(
         ),
         divXL,
         Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
@@ -319,6 +320,50 @@ Widget extraShelf(
                         ),
                         child: const Icon(
                           Icons.map_outlined,
+                          color: Color.fromRGBO(30, 136, 229, 1),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              width: 165,
+              height: 110,
+              margin: const EdgeInsets.only(
+                right: 20,
+                left: 10,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                color: Colors.purple[200],
+                border: containerBorder(Colors.purple),
+              ),
+              padding: const EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 10,
+              ),
+              child: Column(
+                children: [
+                  const Row(
+                    children: [
+                      Text(
+                        "Wiki",
+                        style: containerTitleStyle,
+                      )
+                    ],
+                  ),
+                  divXL,
+                  Row(
+                    children: [
+                      InkWell(
+                        onTap: () => launchUrl(
+                          Uri.parse(
+                              "https://en.wikipedia.org/wiki/$commonName"),
+                        ),
+                        child: const Icon(
+                          Icons.info_outline,
                           color: Color.fromRGBO(30, 136, 229, 1),
                         ),
                       ),

@@ -1,3 +1,4 @@
+import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:countries_info_app/models/countries_info.dart';
 import 'package:countries_info_app/services/rest_countries_api.dart';
 import 'package:countries_info_app/widgets/extras_shelf.dart';
@@ -19,10 +20,12 @@ class _HomepageState extends State<Homepage> {
   CountriesInfoModel getModelFunctions = CountriesInfoModel();
   CountriesInfoModel? data;
   List borders = [];
+  List<String> suggestionCountries = [];
 
   Future<void> getCountryData(String country) async {
     data = await client.getCountriesInfo(country);
     await getBorderCountries(data!.borders);
+    suggestionCountries = await client.getAllCountries();
   }
 
   Future<void> getBorderCountries(List? codes) async {
@@ -55,6 +58,7 @@ class _HomepageState extends State<Homepage> {
   }
 
   Widget appSearch() {
+    GlobalKey<AutoCompleteTextFieldState<String>> key = GlobalKey();
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: 10,
@@ -67,7 +71,10 @@ class _HomepageState extends State<Homepage> {
               padding: const EdgeInsets.symmetric(
                 horizontal: 20,
               ),
-              child: TextField(
+              child: SimpleAutoCompleteTextField(
+                key: key,
+                suggestions: suggestionCountries,
+                suggestionsAmount: 10,
                 controller: textController,
                 cursorColor: Colors.white,
                 style: const TextStyle(
@@ -118,6 +125,13 @@ class _HomepageState extends State<Homepage> {
                     ),
                   ),
                 ),
+                textSubmitted: (data) {
+                  if (textController.text != '') {
+                    setState(() {
+                      searchCountry = textController.text;
+                    });
+                  }
+                },
               ),
             ),
           )
@@ -205,20 +219,22 @@ class _HomepageState extends State<Homepage> {
             "${data!.latitude}",
             "${data!.longitude}",
             "${data!.maps}",
+            "${data!.commonName}",
           ),
           const SizedBox(
             height: 20,
           ),
           const Center(
             child: SizedBox(
-              width: 220,
+              width: 300,
               height: 25,
               child: Text(
-                "Powered by REST Countries",
+                "Data provided by REST Countries",
                 style: TextStyle(
                   color: Colors.white,
                   fontStyle: FontStyle.italic,
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
           ),
@@ -229,7 +245,7 @@ class _HomepageState extends State<Homepage> {
 
   AppBar countryAppBar() {
     return AppBar(
-      title: const Text('countries info'),
+      title: const Text('country!'),
       backgroundColor: Colors.transparent,
       foregroundColor: Colors.amber,
       elevation: 0.0,
